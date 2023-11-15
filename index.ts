@@ -11,7 +11,7 @@ const port = process.env.PORT;
 const conn = mysql.createPool(process.env.DATABASE_URL || "");
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server Hello World");
+  res.send("Express + TypeScript Server Hello World This is");
 });
 
 app.get("/users",   async (req: Request, res: Response) => {
