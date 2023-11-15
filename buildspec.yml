@@ -21,7 +21,4 @@ phases:
       - echo Pushing the Docker image...
       - docker push 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION
       - docker push 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
-      - printf '[{"name":"%s","imageUri":"849857290067.dkr.ecr.%s.amazonaws.com/%s:%s"}]' "$CONTAINER_NAME" "$AWS_REGION" "$REPO_NAME" "$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION" > imagedefinitions.json
-artifacts:
-  files:
-    - imagedefinitions.json
+      - printf '[{"name":"%s","imageUri":"849857290067.dkr.ecr.%s.amazonaws.com/%s:%s"}]' "$CONTAINER_NAME" "$AWS_REGION" "$REPO_NAME" "$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION"
