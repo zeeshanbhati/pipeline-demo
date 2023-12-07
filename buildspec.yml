@@ -11,14 +11,12 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
-      - docker build -t $REPO_NAME:$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION -f $DOCKERFILE_PATH .
-      - docker tag $REPO_NAME:$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION
-      - docker tag $REPO_NAME:$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
+      - docker build -t $REPO_NAME:$REPO_TAG_PREFIX -f $DOCKERFILE_PATH .
+      - docker tag $REPO_NAME:$REPO_TAG_PREFIX 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$CODEBUILD_BUILD_NUMBER
   post_build:
     on-failure: ABORT
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION
-      - docker push 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:latest
-      - printf '[{"name":"%s","imageUri":"849857290067.dkr.ecr.%s.amazonaws.com/%s:%s"}]' "$CONTAINER_NAME" "$AWS_REGION" "$REPO_NAME" "$REPO_TAG_PREFIX-$CODEBUILD_RESOLVED_SOURCE_VERSION"
+      - docker push 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:CODEBUILD_BUILD_NUMBER
+      - printf '[{"name":"%s","imageUri":"849857290067.dkr.ecr.%s.amazonaws.com/%s:%s"}]' "$CONTAINER_NAME" "$AWS_REGION" "$REPO_NAME" "$REPO_TAG_PREFIX"
