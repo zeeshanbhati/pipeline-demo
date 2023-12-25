@@ -10,7 +10,13 @@ dotenv.config();
 const app: Express = express();
 const port = process.env.PORT;
 
-const conn = mysql.createPool(process.env.DATABASE_URL || "");
+const conn = mysql.createPool({
+  host:'mysql-container',
+  user:'root',
+  password:process.env.DB_PASS,
+  database:'mydatabase',
+  port:3306
+});
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server Hello World This is SOmething");
