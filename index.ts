@@ -30,7 +30,8 @@ app.get("/users",   async (req: Request, res: Response) => {
 });
 
 app.get("/redis",async(req:Request , res:Response)=>{
-  const response = await redisClient.get('demo');
+  const conn = await redisClient.connect();
+  const response = await conn.get('demo');
   return res.status(200).json(response);
 })
 
