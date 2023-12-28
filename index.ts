@@ -21,6 +21,10 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server Hello World This is SOmething");
 });
 
+app.get("/health", (req:Request , res:Response)=>{
+res.status(200).send('healthy');
+})
+
 app.get("/users",   async (req: Request, res: Response) => {
  const r = await conn.query("SELECT * FROM users");
   if(r[0]){
