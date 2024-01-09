@@ -2,12 +2,12 @@ version: 0.2
 
 phases:
   pre_build:
-    on-failure: ABORT
+    on-failure: CONTINUE
     commands:
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_REGION | docker login --username AWS --password-stdin 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com
   build:
-    on-failure: ABORT
+    on-failure: CONTINUE
     commands:
       - echo Build started on `date`
       - echo Building the Docker image...
