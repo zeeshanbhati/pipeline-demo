@@ -20,7 +20,8 @@ phases:
       - echo Pushing the Docker image...
       - docker push 849857290067.dkr.ecr.$AWS_REGION.amazonaws.com/$REPO_NAME:$CODEBUILD_BUILD_NUMBER
       - printf '[{"name":"%s","imageUri":"849857290067.dkr.ecr.%s.amazonaws.com/%s:%s"}]' "$CONTAINER_NAME" "$AWS_REGION" "$REPO_NAME" "$REPO_TAG_PREFIX"
-      - if [ "$CODEBUILD_BUILD_SUCCEEDING" == "1" ]; then
+      - |
+        if [ "$CODEBUILD_BUILD_SUCCEEDING" == "1" ]; then
           curl -L \
           -X POST \
           -H "Accept: application/vnd.github+json" \
