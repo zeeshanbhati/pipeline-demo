@@ -1,7 +1,6 @@
 import "./tracer";
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import mysql from "mysql2/promise";
 import * as redis from "redis";
 
 dotenv.config();
@@ -23,13 +22,13 @@ app.get("/health", (req: Request, res: Response) => {
   res.status(200).send("healthy");
 });
 
-app.get("/users", async (req: Request, res: Response) => {
-  const r = await conn.query("SELECT * FROM users");
-  if (r[0]) {
-    return res.status(200).json(r[0]);
-  }
-  res.status(400).json({ error: "Notfound" });
-});
+// app.get("/users", async (req: Request, res: Response) => {
+//   const r = await conn.query("SELECT * FROM users");
+//   if (r[0]) {
+//     return res.status(200).json(r[0]);
+//   }
+//   res.status(400).json({ error: "Notfound" });
+// });
 
 app.get("/redis", async (req: Request, res: Response) => {
   const conn = await redisClient.connect();
