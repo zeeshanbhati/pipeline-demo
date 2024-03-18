@@ -1,7 +1,6 @@
-import "./tracer";
+//import "./tracer";
 import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
-import * as redis from "redis";
 
 dotenv.config();
 
