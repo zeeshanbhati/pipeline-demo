@@ -6,13 +6,13 @@ import * as redis from "redis";
 dotenv.config();
 
 const app: Express = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 3000;
 
 // const conn = mysql.createPool(process.env.DB_URL || "");
 
-const redisClient = redis.createClient({
-  url: process.env.REDIS_URL,
-});
+// const redisClient = redis.createClient({
+//   url: process.env.REDIS_URL,
+// });
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server Hello World This is SOmething");
@@ -30,12 +30,12 @@ app.get("/health", (req: Request, res: Response) => {
 //   res.status(400).json({ error: "Notfound" });
 // });
 
-app.get("/redis", async (req: Request, res: Response) => {
-  const conn = await redisClient.connect();
-  const response = await conn.get("demo");
-  conn.disconnect();
-  return res.status(200).json(response);
-});
+// app.get("/redis", async (req: Request, res: Response) => {
+//   const conn = await redisClient.connect();
+//   const response = await conn.get("demo");
+//   conn.disconnect();
+//   return res.status(200).json(response);
+// });
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
