@@ -14,7 +14,7 @@ const port = process.env.PORT || 3000;
 // });
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Express + TypeScript Server Hello World This is SOmething");
+  res.send("Testing CodeDeploy");
 });
 
 app.get("/health", (req: Request, res: Response) => {
