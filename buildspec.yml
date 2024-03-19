@@ -42,4 +42,4 @@ phases:
 artifacts:
   files:
     - '**/*'
-  base-directory: ../express-pipeline
+  base-directory: express-pipeline
