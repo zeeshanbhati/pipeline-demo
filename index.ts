@@ -15,6 +15,7 @@ const port = process.env.PORT || 3000;
 
 app.get("/", (req: Request, res: Response) => {
   res.send("Testing CodeDeploy");
+  
 });
 
 app.get("/health", (req: Request, res: Response) => {
